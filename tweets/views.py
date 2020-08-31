@@ -10,14 +10,9 @@ from django.conf import settings
 from rest_framework.response import Response
 from .serializers import Tweetserializers, TweetActionSerializers,TweetsCreateSerializers
 
-
 from rest_framework.decorators import api_view, permission_classes  #authentication_classes
 from rest_framework.permissions import IsAuthenticated
 # from rest_framework.authentication import SessionAuthentication
-
-
-
-
 
 @api_view(["POST"])
 # @authentication_classes([SessionAuthentication])
@@ -27,7 +22,6 @@ def tweet_create_view(request, *args, **kwargs):
     serializers = TweetsCreateSerializers(data=data)
     if serializers.is_valid(raise_exception=True):
         serializers.save(user=request.user)
-        print(serializers.data)
         return Response(serializers.data,status=201)
     return Response({},status=400)
 
@@ -58,8 +52,6 @@ def tweets_delete_view(request, id, *args, **kwargs):
     obj = tweet.first()
     obj.delete()
     return Response({"message":"tweet has been removed"}, status=200)
-
-
 
 @api_view(["POST","DELETE"])
 @permission_classes([IsAuthenticated])
@@ -92,15 +84,24 @@ def tweets_action_view(request, *args, **kwargs):
             return Response(serializers.data, status=201)
     return Response({"message":"u liked the tweet"}, status=200)
 
-
-
 def index_pure_django(request, *args, **kwargs ):
     if request.user.is_authenticated:
         username = request.user.username
     return render(request ,"tweets/templates/index.html",{"username":username})
 
+
+
+
+
+
+
+
+
+
+
+
+
 def tweet_create_view_pure_django(request, *args, **kwargs):
-    print(request.user)
     user = request.user
     if not request.user.is_authenticated:
         user = None

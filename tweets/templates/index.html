@@ -20,12 +20,9 @@
   </div>
 </div>
 
-
 <div id="tweets" class="row">
   Replace me
 </div>
-
-
 
 <script>
   function getCookie(name) {
@@ -43,7 +40,6 @@
     }
     return cookieValue;
   }
-
 
   function handleTweetCreateError(msg, display) {
     const tweetErrorEl = document.getElementById("tweet-create-form-error")
@@ -101,12 +97,9 @@
       }
     }
     xhr.send(myFormData)
-
-
   }
   const tweetCreateFormEl = document.getElementById("tweet-create-form")
   tweetCreateFormEl.addEventListener("submit",handleTweetCreateFormDidSubmit)
-
 
   const tweetsContainerElement = document.getElementById("tweets")
 

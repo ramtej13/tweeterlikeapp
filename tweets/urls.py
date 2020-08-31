@@ -1,6 +1,5 @@
-
 from .views import index_pure_django,tweets_detailed_view,tweeter_list_view,tweet_create_view,tweets_delete_view,tweets_action_view
-from django.urls import path,include
+from django.urls import path
 
 urlpatterns = [
     path('',index_pure_django, name="index"),

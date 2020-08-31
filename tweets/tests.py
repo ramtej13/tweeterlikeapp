@@ -11,7 +11,6 @@ class TweetTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='zca',password='somepassword')
         self.user2 = User.objects.create_user(username='zca-2',password='somepassword2')
-
         Tweets.objects.create(content="my one  test", user=self.user)
         Tweets.objects.create(content="my two test", user=self.user)
         Tweets.objects.create(content="my threr test", user=self.user2)
@@ -84,7 +83,6 @@ class TweetTestCase(TestCase):
         self.assertEqual(response.status_code,200)
         client = self.get_client()
         response = client.delete("/api/1/delete/")
-        print(response)
         self.assertEqual(response.status_code,400)
         response_response_incorrect_owner = client.delete("/api/3/delete/")
         self.assertEqual(response_response_incorrect_owner.status_code,401)
